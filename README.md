@@ -11,8 +11,8 @@ It exports 3 symbols:
 - EncryptCeasar(shift int, text string  - function to encrypt text using Ceasar cipher
 - DecryptCeasar(shift int, text string  - function to encrypt text using Ceasar cipher
 - VermanCipher - variable of type vermanCipher that implements 2 methods:
--- Encrypt(string) string
--- Decrypt() (*string, error)
+    - Encrypt(string) string
+    - Decrypt() (*string, error)
 
 ## Compile & Run
 
