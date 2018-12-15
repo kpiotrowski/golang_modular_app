@@ -19,16 +19,16 @@ func main() {
 		fmt.Println("Unable to load cipher module")
 		os.Exit(1)
 	}
-	//Load EncryptCeasar function
-	encryptCeasarSymbol, err := pluginModule.Lookup("EncryptCeasar")
+	//Load EncryptCaesar function
+	encryptCaesarSymbol, err := pluginModule.Lookup("EncryptCaesar")
 	if err != nil {
-		fmt.Println("Unable to load ceasar encrypt function")
+		fmt.Println("Unable to load caesar encrypt function")
 		os.Exit(1)
 	}
-	//Load DecryptCeasar function
-	decryptCeasarSymbol, err := pluginModule.Lookup("DecryptCeasar")
+	//Load DecryptCaesar function
+	decryptCaesarSymbol, err := pluginModule.Lookup("DecryptCaesar")
 	if err != nil {
-		fmt.Println("Unable to load ceasar decrypt function")
+		fmt.Println("Unable to load caesar decrypt function")
 		os.Exit(1)
 	}
 	//Load VermanCipher variable
@@ -38,20 +38,20 @@ func main() {
 		os.Exit(1)
 	}
 
-	//Cast encryptCeasar symbol to the correct type
-	encryptCeasarFunc := encryptCeasarSymbol.(func(int, string) string)
-	//Cast encryptCeasar symbol to the correct type
-	decryptCeasarFunc := decryptCeasarSymbol.(func(int, string) string)
+	//Cast encryptCaesar symbol to the correct type
+	encryptCaesarFunc := encryptCaesarSymbol.(func(int, string) string)
+	//Cast encryptCaesar symbol to the correct type
+	decryptCaesarFunc := decryptCaesarSymbol.(func(int, string) string)
 	//Cast vermanCipher symbol to the correct interface type
 	vermanCipherIf := vermanCipherSymbol.(encryptionEngine)
 
 	plainText := "This is my super secret text 007!"
 	fmt.Printf("Plain text: \t\t%s\n", plainText)
 
-	encryptedC4 := encryptCeasarFunc(4, plainText)
+	encryptedC4 := encryptCaesarFunc(4, plainText)
 	fmt.Printf("Encrypted C4: \t\t%s\n", encryptedC4)
 
-	decryptedC4 := decryptCeasarFunc(4, encryptedC4)
+	decryptedC4 := decryptCaesarFunc(4, encryptedC4)
 	fmt.Printf("Decrypted C4: \t\t%s\n", decryptedC4)
 
 	encryptedV := vermanCipherIf.Encrypt(plainText)

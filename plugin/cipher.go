@@ -3,17 +3,17 @@ package main
 import "errors"
 import "math/rand"
 
-//EncryptCeasar replace every letter in the `text` by a letter shifted by `shift`.
-func EncryptCeasar(shift int, text string) string {
-	return ceasarShift(shift, text)
+//EncryptCaesar replace every letter in the `text` by a letter shifted by `shift`.
+func EncryptCaesar(shift int, text string) string {
+	return caesarShift(shift, text)
 }
 
-//DecryptCeasar replace every letter in the `text` by a letter shifted by `-shift`.
-func DecryptCeasar(shift int, text string) string {
-	return ceasarShift(-shift, text)
+//DecryptCaesar replace every letter in the `text` by a letter shifted by `-shift`.
+func DecryptCaesar(shift int, text string) string {
+	return caesarShift(-shift, text)
 }
 
-//VermanCipher is similar to the Ceasar sipher, however it shift every letter by a random number of positions
+//VermanCipher is similar to the Caesar sipher, however it shift every letter by a random number of positions
 type vermanCipher struct {
 	encryptedText *string
 	key           []rune
@@ -22,7 +22,7 @@ type vermanCipher struct {
 //VermanCipher is a exported variable that will be shared with external app
 var VermanCipher vermanCipher
 
-//Encrypt generates encryption key and use it in the ceasar shift method
+//Encrypt generates encryption key and use it in the caesar shift method
 func (v *vermanCipher) Encrypt(text string) string {
 	v.key = generateShiftKey(len(text))
 	encryptedText := vermanShift(v.key, text, false)
@@ -39,7 +39,7 @@ func (v *vermanCipher) Decrypt() (*string, error) {
 	return &decryptedText, nil
 }
 
-func ceasarShift(shift int, text string) string {
+func caesarShift(shift int, text string) string {
 	runes := make([]rune, len(text))
 	for i, r := range text {
 		runes[i] = shiftLetter(r, shift)
@@ -61,7 +61,7 @@ func vermanShift(shift []rune, text string, decrypt bool) string {
 }
 
 func shiftLetter(letter rune, shift int) rune {
-	letterCode := int(letter) + (shift % 26)
+	letterCode := int(letter) + (shift % 95)
 	if letterCode > int('~') {
 		letterCode -= 95
 	}

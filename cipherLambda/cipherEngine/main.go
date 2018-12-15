@@ -31,13 +31,13 @@ func Handler(ctx context.Context) (LambdaResponse, error) {
 	if err != nil {
 		return resp, err
 	}
-	//Load EncryptCeasar function
-	encryptCeasarSymbol, err := pluginModule.Lookup("EncryptCeasar")
+	//Load EncryptCaesar function
+	encryptCaesarSymbol, err := pluginModule.Lookup("EncryptCaesar")
 	if err != nil {
 		return resp, err
 	}
-	//Load DecryptCeasar function
-	decryptCeasarSymbol, err := pluginModule.Lookup("DecryptCeasar")
+	//Load DecryptCaesar function
+	decryptCaesarSymbol, err := pluginModule.Lookup("DecryptCaesar")
 	if err != nil {
 		return resp, err
 	}
@@ -47,16 +47,16 @@ func Handler(ctx context.Context) (LambdaResponse, error) {
 		return resp, err
 	}
 
-	//Cast encryptCeasar symbol to the correct type
-	encryptCeasarFunc := encryptCeasarSymbol.(func(int, string) string)
-	//Cast encryptCeasar symbol to the correct type
-	decryptCeasarFunc := decryptCeasarSymbol.(func(int, string) string)
+	//Cast encryptCaesar symbol to the correct type
+	encryptCaesarFunc := encryptCaesarSymbol.(func(int, string) string)
+	//Cast encryptCaesar symbol to the correct type
+	decryptCaesarFunc := decryptCaesarSymbol.(func(int, string) string)
 	//Cast vermanCipher symbol to the correct interface type
 	vermanCipherIf := vermanCipherSymbol.(encryptionEngine)
 
 	resp.PlainText = "This is my super secret text 007!"
-	resp.EncryptedC4 = encryptCeasarFunc(4, resp.PlainText)
-	resp.DecryptedC4 = decryptCeasarFunc(4, resp.EncryptedC4)
+	resp.EncryptedC4 = encryptCaesarFunc(4, resp.PlainText)
+	resp.DecryptedC4 = decryptCaesarFunc(4, resp.EncryptedC4)
 	resp.EncryptedV = vermanCipherIf.Encrypt(resp.PlainText)
 	decryptedV, err := vermanCipherIf.Decrypt()
 	if err != nil {

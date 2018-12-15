@@ -4,12 +4,12 @@ Simple example how to build modular golang application.
 
 ## Plugin description
 
-Example plugin implements 2 encryption algorithms : Ceasar and Verman.
+Example plugin implements 2 encryption algorithms : Caesar and Verman.
 
 It exports 3 symbols:
 
-- EncryptCeasar(int, string)  - function to encrypt text using Ceasar cipher
-- DecryptCeasar(int, string)  - function to decrypt text using Ceasar cipher
+- EncryptCaesar(int, string)  - function to encrypt text using Caesar cipher
+- DecryptCaesar(int, string)  - function to decrypt text using Caesar cipher
 - VermanCipher - variable of type vermanCipher that implements 2 methods:
     - Encrypt(string) string
     - Decrypt() (*string, error)
